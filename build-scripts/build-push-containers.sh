@@ -11,8 +11,8 @@ IMAGE="$1"
 OS="${3:-linux}"
 ARCHITECTURES="${2:-amd64 arm64}"
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
-ROOT_DIR="container"
-CONTAINER_FILE_DIR=$SCRIPT_DIR"/container"
+ROOT_DIR="containers"
+CONTAINER_FILE_DIR=$SCRIPT_DIR"/containers"
 
 function push(){
     buildah manifest push --all $IMAGE "docker://quay.io/bluechi/$IMAGE"
@@ -36,7 +36,7 @@ function build(){
     done
 }
 
-[ -z ${IMAGE} ] && echo "Requires image name. Either 'build-base' or 'integration-test-base'." && exit 1
+[ -z ${IMAGE} ] && echo "Requires image name. One of ['bluechi-workshop']." && exit 1
 
 echo "Building containers and manifest for '${IMAGE}'"
 echo ""
