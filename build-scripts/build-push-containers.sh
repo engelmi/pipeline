@@ -12,7 +12,6 @@ OS="${3:-linux}"
 ARCHITECTURES="${2:-amd64 arm64}"
 SCRIPT_DIR=$(dirname "$(readlink -f "$0")")
 ROOT_DIR="containers"
-CONTAINER_FILE_DIR=$SCRIPT_DIR"/containers"
 
 function push(){
     buildah manifest push --all $IMAGE "docker://quay.io/bluechi/$IMAGE"
@@ -30,7 +29,7 @@ function build(){
                 --manifest $IMAGE \
                 --os ${os} \
                 --arch ${arch} \
-                -f ${CONTAINER_FILE_DIR}/${IMAGE} \
+                -f ${ROOT_DIR}/${IMAGE} \
                 ${ROOT_DIR}
         done
     done
