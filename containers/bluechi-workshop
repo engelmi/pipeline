@@ -16,8 +16,4 @@ RUN dnf upgrade --refresh -y --nodocs && \
 RUN sed -i "s/^Listen 80$/Listen 8088/" /etc/httpd/conf/httpd.conf
 COPY files/html/* /var/www/html
 
-# Pull images required by container example
-RUN podman pull docker.io/mariadb:latest
-RUN podman pull docker.io/wordpress
-
 CMD [ "/sbin/init" ]
