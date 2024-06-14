@@ -29,7 +29,6 @@ function build(){
                 --manifest $IMAGE \
                 --os ${os} \
                 --arch ${arch} \
-                --security-opt seccomp=unconfined \
                 -f ${ROOT_DIR}/${IMAGE} \
                 ${ROOT_DIR}
         done
